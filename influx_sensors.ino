@@ -13,13 +13,13 @@ CCS811 ccs_sensor(0x5B);
 
 EthernetClient client; // client instance
 byte eth_mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0xCD, 0xB8 };
-IPAddress ip(10, 0, 0, 30);
-IPAddress gateway(10, 0, 0, 1);
+IPAddress ip(192, 168, 0, 30);
+IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
-IPAddress dns(10, 0, 0, 1);
+IPAddress dns(192, 168, 0, 1);
 
 // InfluxDB server address
-byte influx_server[] = {10, 0, 0, 5};
+byte influx_server[] = {192, 168, 0, 5};
 unsigned const influx_port = 8086;
 
 unsigned const buffer_size = 90; // max size of influxdb post data
@@ -51,7 +51,7 @@ void eth_send_data(char* data, int dataSize) {
 
     // send HTTP header and buffer
     client.println(F("POST /write?db=ard_tmp HTTP/1.1"));
-    client.println(F("Host: 10.0.0.5:8086"));
+    client.println(F("Host: 192.168.0.5:8086"));
     client.println(F("User-Agent: Arduino/1.0"));
     client.println(F("Content-Type: application/x-www-form-urlencoded"));
     client.print(F("Content-Length: "));
